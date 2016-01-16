@@ -14,6 +14,24 @@ public class FragmentA extends Fragment implements View.OnClickListener {
    int contador =0;
    Comunicador comunicacion;
 
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        /**
+         * restaurar textoGuardado
+         */
+        if(null==savedInstanceState){
+            contador=0;
+        }else {
+            contador=savedInstanceState.getInt("contador",0);//0 es el valor por defecto
+        }
+
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -22,10 +40,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
 
 
     @Override
@@ -37,6 +52,18 @@ public class FragmentA extends Fragment implements View.OnClickListener {
         btn = (Button) getActivity().findViewById(R.id.btn_fragA);
         btn.setOnClickListener(this);
 
+    }
+
+
+    /**
+     * guardar contador
+     * @param outState
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("contador", contador);
     }
 
 

@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements Comunicador {
 
 
     @Override
-    public void responder(String datos) {//los datos recibidos son el numero de clicks
+    public void responder(String datos) {//los textoGuardado recibidos son el numero de clicks
         android.app.FragmentManager fragmentManager = getFragmentManager();
         //android.app.Fragment fragmentB =(FragmentB) fragmentManager.findFragmentById(R.id.fragmentB_element);
         FragmentB fragmentb=(FragmentB) fragmentManager.findFragmentById(R.id.fragmentB_element);

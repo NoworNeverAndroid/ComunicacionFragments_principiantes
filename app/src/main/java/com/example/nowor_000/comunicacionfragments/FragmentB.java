@@ -13,10 +13,22 @@ public class FragmentB extends Fragment {
 
 
     TextView tv;
+    String textoGuardado;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_b, container,false);
+        View rootView= inflater.inflate(R.layout.fragment_b, container,false);
+        if(savedInstanceState==null){
+
+        }else {//restaurar el texto
+           textoGuardado = savedInstanceState.getString("texto");
+            tv=(TextView) rootView.findViewById(R.id.tv_fragB);
+            tv.setText(textoGuardado);
+
+        }
+
+        return rootView;
 
     }
 
@@ -27,8 +39,14 @@ public class FragmentB extends Fragment {
         tv= (TextView) getActivity().findViewById(R.id.tv_fragB);
     }
 
-    public void cambiarTexto(String texto){
+    @Override
+    public void onSaveInstanceState(Bundle outState) {//guardar el texto
+        super.onSaveInstanceState(outState);
+        outState.putString("texto", textoGuardado);
+    }
 
+    public void cambiarTexto(String texto){
+        this.textoGuardado =texto;//almacenar en la variable cualquier cambio, del texto
         tv.setText(texto);
     }
 
